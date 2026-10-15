@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐾 Fascinating Facts: Cats & Dogs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #fef9f1 0%, #f5ebe0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            color: #2e241e;
+        }
+
+        .page-container {
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        /* header styling */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 8vw, 3.8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #3b2c24;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 0.6rem 2rem;
+            border-radius: 100px;
+            box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .subhead {
+            font-size: 1.3rem;
+            margin-top: 1.2rem;
+            color: #5e4b3c;
+            font-weight: 400;
+            background: rgba(255, 255, 255, 0.4);
+            display: inline-block;
+            padding: 0.4rem 2rem;
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* grid layout */
+        .fact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2.5rem 0 2rem;
+        }
+
+        @media (max-width: 700px) {
+            .fact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+        }
+
+        /* card panel */
+        .pet-panel {
+            background: #ffffffd9;
+            backdrop-filter: blur(10px);
+            border-radius: 2.5rem;
+            padding: 2rem 2rem 2.2rem;
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pet-panel:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 40px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px dashed #e0cfc0;
+        }
+
+        .panel-header .emoji-big {
+            font-size: 3.2rem;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .panel-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .cat-panel .panel-header h2 {
+            color: #8b5a2b;
+        }
+
+        .dog-panel .panel-header h2 {
+            color: #7b4a2e;
+        }
+
+        /* fact list */
+        .fact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            flex: 1;
+        }
+
+        .fact-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: rgba(253, 247, 240, 0.7);
+            padding: 1.1rem 1.3rem;
+            border-radius: 1.5rem;
+            transition: background 0.2s;
+            border: 1px solid #f0e3d8;
+        }
+
+        .fact-item:hover {
+            background: #fffaf4;
+            border-color: #dcc9b8;
+        }
+
+        .fact-bullet {
+            font-size: 1.6rem;
+            line-height: 1;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .fact-text {
+            font-size: 1.1rem;
+            line-height: 1.55;
+            color: #2f241d;
+            font-weight: 450;
+        }
+
+        .fact-text strong {
+            font-weight: 700;
+            color: #8b5a2b;
+        }
+
+        .dog-panel .fact-text strong {
+            color: #7b4a2e;
+        }
+
+        /* footer */
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #7e6b5c;
+            font-size: 1rem;
+            padding: 1.2rem 1rem 0.5rem;
+            border-top: 1px solid #e3d5c8;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        footer span {
+            background: #e8dbcf;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #4e3e32;
+        }
+
+        /* minor adjustments */
+        .fact-item:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1>
+                <span>🐱</span> Feline &amp; Canine <span>🐶</span>
+            </h1>
+            <div class="subhead">Surprising facts about our best friends</div>
+        </header>
+
+        <div class="fact-grid">
+            <!-- CAT PANEL -->
+            <section class="pet-panel cat-panel">
+                <div class="panel-header">
+                    <span class="emoji-big">🐈</span>
+                    <h2>Cat Facts</h2>
+                </div>
+                <div class="fact-list">
+                    <div class="fact-item">
+                        <span class="fact-bullet">🐾</span>
+                        <span class="fact-text"><strong>Cats can make over 100 different vocal sounds.</strong> Dogs only make about 10.</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-bullet">👃</span>
+                        <span class="fact-text"><strong>A cat's nose print is unique</strong>, just like a human fingerprint. No two cats have the same pattern.</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-bullet">💤</span>
+                        <span class="fact-text"><strong>Cats spend about 70% of their lives sleeping.</strong> That's roughly 13–16 hours a day to recharge.</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-bullet">🧠</span>
+                        <span class="fact-text"><strong>Cats have a specialized collarbone</strong> that allows them to always land on their feet — the righting reflex.</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-bullet">👑</span>
+                        <span class="fact-text"><strong>Ancient Egyptians revered cats</strong> as sacred. Killing one was punishable by death.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DOG PANEL -->
+            <section class="pet-panel dog-panel">
+                <div class="panel-header">
+                    <span class="emoji-big">🐕</span>
+                    <h2>Dog Facts</h2>
+                </div>
+                <div class="fact-list">
+                    <div class="fact-item">
+                        <span class="fact-bullet">👃</span>
+                        <span class="fact-text"><strong>A dog's sense of smell is 10,000–100,000 times stronger</strong> than a human's. They can detect certain diseases.</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-bullet">🎓</span>
+                        <span class="fact-text"><strong>Dogs can learn over 250 words and gestures.</strong> The smartest breeds can understand up to 1,000 words.</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-bullet">🌡️</span>
+                        <span class="fact-text"><strong>Dogs sweat through their paw pads</strong> — that's why they pant heavily to cool down.</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-bullet">❤️</span>
+                        <span class="fact-text"><strong>Dogs have a "puppy dog eyes" muscle</strong> (the levator anguli oculi medialis) that evolved specifically to bond with humans.</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-bullet">🐕‍🦺</span>
+                        <span class="fact-text"><strong>Basenjis and New Guinea singing dogs</strong> are the only breeds that don't bark — they yodel, whine, or howl.</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <span>🐱 5 cat facts</span>
+            <span>🐶 5 dog facts</span>
+            <span>✨ share with a pet lover</span>
+        </footer>
+    </div>
+</body>
+</html>
